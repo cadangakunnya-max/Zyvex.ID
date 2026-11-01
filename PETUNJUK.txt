@@ -1,0 +1,39 @@
+ZYVEX.ID — PETUNJUK PEMASANGAN
+
+ISI WEBSITE
+- index.html + style.css + script.js: toko publik, katalog, filter harga/rank, detail akun.
+- admin/index.html + admin/admin.css + admin/admin.js: login admin, tambah, edit, hapus akun, status dan DP.
+- config.js: URL dan Publishable Key Supabase.
+- SETUP-SUPABASE.sql: tabel dan aturan keamanan database.
+
+LANGKAH 1 — DATABASE
+1. Buka Supabase SQL Editor.
+2. Tempel seluruh isi SETUP-SUPABASE.sql.
+3. Tekan Run.
+4. Jika ada error, berhenti dan periksa pesan error sebelum lanjut.
+
+LANGKAH 2 — BUAT ADMIN
+1. Di Supabase buka Authentication > Users.
+2. Tambahkan user dengan email dan password admin milikmu.
+3. Salin UUID user yang dibuat.
+4. Di SQL Editor jalankan query ini dengan UUID milikmu:
+   insert into public.admin_users (user_id)
+   values ('UUID_USER_MILIKMU')
+   on conflict (user_id) do nothing;
+5. Jangan bagikan password admin atau Secret Key.
+
+LANGKAH 3 — FILE
+1. Ekstrak ZIP ini di ZArchiver.
+2. Upload folder beserta semua file dan subfolder ke hosting yang mendukung static website.
+3. Buka website dari alamat hosting HTTPS.
+4. Admin panel ada di /admin/index.html.
+
+CATATAN PENTING
+- Website ini menggunakan Supabase URL dan Publishable Key. Publishable Key memang boleh berada di frontend.
+- Jangan pernah memasukkan sb_secret_... atau service_role key ke file HTML/JS.
+- Database dilindungi RLS. Hanya UUID yang terdaftar di admin_users yang dapat menambah, mengubah, dan menghapus akun.
+- Gambar akun menggunakan URL gambar publik. Belum ada upload gambar langsung.
+- Isi nomor WhatsApp dalam format internasional angka saja, misalnya 62812xxxxxxx.
+- Isi nomor WhatsApp di setiap akun agar tombol kontak muncul.
+- Ini adalah template awal; uji alur admin dan katalog sebelum dipublikasikan.
+- Penjualan akun game dapat memiliki risiko dan mungkin dibatasi ketentuan layanan game. Pastikan memahami ketentuan terkait dan jangan menjanjikan keamanan/keabsahan akun yang tidak dapat diverifikasi.
